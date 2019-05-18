@@ -1,4 +1,4 @@
-# this is really bad code, i gave up
+# this is really bad code, i gave up.
 
 def start
     puts "Welcome to Pogger's Peril!"
