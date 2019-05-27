@@ -5,14 +5,14 @@ change = [1, 'pennies', 2, 'dimes', 3, 'quarters']
 # this first kind of for-loop goes through a list
 # in a more traditional style found in other languages
 for number in the_count # for every single item in array 'the_count', named 'number'
-    puts "This is count #{number}" # print that item as a variable
+  puts "This is count #{number}" # print that item as a variable
 end
 
 # same as above, but in a more Ruby style
 # this and the next one are the preferred
 # way Ruby for-loops are written
 fruits.each do |fruit| # for every single item in array 'fruits', named 'fruit'
-    puts "A fruit of type: #{fruit}" # print that item as a variable
+  puts "A fruit of type: #{fruit}" # print that item as a variable
 end
 
 # also we can go through mixed lists too
@@ -25,9 +25,9 @@ elements = []
 
 # then use the range operator to do 0 to 5 counts
 (0..5).each do |i| # for each number 0 to 5, push to array i (adding as variable first)
-    puts "adding #{i} to the list."
-    # appends the i variable onto the *end* of the list
-    elements.push(i)
+  puts "adding #{i} to the list."
+  # appends the i variable onto the *end* of the list
+  elements.push(i)
 end
 
 # now we can print them out too
