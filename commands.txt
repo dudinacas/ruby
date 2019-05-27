@@ -1,0 +1,38 @@
+Commands in Ruby
+
+print : prints a string given to it
+puts : prints a string given to it, makes a new line afterwards
+#{} : performs operation inside string
++ : adds two numbers/variables
+- : subtracts two numbers
+* : multiplies two numbers
+/ : divides two numbers
+% : gets percentage of two numbers
+> : greater than
+< : lesser than
+>= : greater than or equal to
+<= : lesser than or equal to
+= : equal
+example = 0 : variable
+%{example1} : formats values given to variable example1
+%{example1: 1, example2: 2} : sets variables
+%q{ example } : multiline quote
+\n : creates a new line in a string
+\t : indents a line
+\\ : cancels so you can backslash
+""" : allows a long block of text to be a string
+gets.chomp : prompts for user input. chomp means the input can be stored in variable
+$stdin.gets.chomp : ignores command-line arguments and prompts for user input 
+example1, example2 = ARGV : takes 2 command-line arguments and stores them as variables
+open(example) : loads filename in variable example into code as variable given.
+open(example, 'w') : makes filename example write-only, aka wipes file beforehand
+example.read : reads file currently in 'example'
+example.truncate(0) : truncates 'example' variable to x number of characters
+example.write(example2) : writes string example2 to file example
+example.close : closes file
+example.length: shows length of file
+#{File.exist?(example)} : checks if file example exists already, gives true or false boolean
+def example : creates function that can be called with example()
+def example(*args) : creates function, called example, which takes arguments given to it in code. you can use numbers, variables, or math for arguments
+example.seek(0) : moves the line of example file to be read
+@example : designates as variable? need further research
