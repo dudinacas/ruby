@@ -1,7 +1,11 @@
 # Sorceror - a mage combat game
 # Created by Zachary Picone, released under the WTFPL
 
+# this code is held together with glue and global variables
+
 require 'colorize'
+require_relative './lib/moves.rb'
+include Moves
 
 # TODO: Split program into multiple files
 
@@ -45,7 +49,7 @@ def init_game
   when 5
     set_vars(1.4)
   else
-    "You should never see this text, contact the developer."
+    puts "You should never see this text, contact the developer."
     Kernel.abort("Unhandled exception in #{__LINE__}")
   end
 
@@ -59,30 +63,40 @@ end
 def player_analysis
 
   names = ['Harshvir', 'Oliver', 'Harry', 'Jack', 'George', 'Noah', 'Bruce', 'Charlie', 'Jacob', 'Alfie', 'Freddie', 'Oscar', 'Olivia', 'Amelia', 'Isla', 'Emily', 'Ava', 'Lily', 'Mia', 'Sophia', 'Isabella', 'Grace', 'Lisa Ann']
+<<<<<<< HEAD:Sorceror.rb
   puts "Welcoming #{$player_name = names.sample.light_blue} to the arena!"; sleep(2)
   puts "Your health: #{$player_health}"; sleep(1)
   puts "Your mana: #{$player_mana}"; sleep(1)
   puts "\nWelcoming #{$enemy_name = names.sample.light_red} to the arena!"; sleep(2)
+=======
+  types = ['Fire', 'Ice', 'Water']
+  puts "Welcoming #{$player_name = names.sample.blue} to the arena!"; sleep(2)
+  puts "Your health: #{$player_health}"; sleep(1)
+  puts "Your mana: #{$player_mana}"; sleep(1)
+  puts "Your magic type: #{$player_type = types.sample}"
+  puts "\nWelcoming #{$enemy_name = names.sample.red} to the arena!"; sleep(2)
+>>>>>>> ed709ac236d616aace3b26bf30624784883eccaf:Sorceror/main.rb
   puts "Enemy's health: #{$enemy_health}"; sleep(1)
   puts "Enemy's mana: #{$enemy_mana}\n"; sleep(1)
+  puts "Enemy's magic type: #{$enemy_type = types.sample}"
   game_loop
 
 end
 
 def game_loop
 
-  player_current_health = $player_health
-  enemy_current_health = $enemy_health
-  player_current_mana = $player_mana
-  enemy_current_mana = $enemy_mana
-  player_current_damage = $player_damage
-  enemy_current_damage = $enemy_damage
+  $player_current_health = $player_health
+  $enemy_current_health = $enemy_health
+  $player_current_mana = $player_mana
+  $enemy_current_mana = $enemy_mana
+  $player_current_damage = $player_damage
+  $enemy_current_damage = $enemy_damage
 
   while true do
-    puts "\nYour current health: #{player_current_health}/#{$player_health}"
-    puts "Your current mana: #{player_current_mana}/#{$player_mana}"
-    puts "#{$enemy_name}'s current health: #{enemy_current_health}/#{$enemy_health}"
-    puts "#{$enemy_name}'s current mana: #{enemy_current_mana}/#{$enemy_mana}"
+    puts "\nYour current health: #{$player_current_health}/#{$player_health}"
+    puts "Your current mana: #{$player_current_mana}/#{$player_mana}"
+    puts "#{$enemy_name}'s current health: #{$enemy_current_health}/#{$enemy_health}"
+    puts "#{$enemy_name}'s current mana: #{$enemy_current_mana}/#{$enemy_mana}"
     puts "\nWhat do you do?"
     puts "1. Damaging Spells / 2. Utility Spells / 3. Defensive Spells / 4. Recharge Mana / 5. Do nothing"
     print ">"
@@ -95,19 +109,21 @@ def game_loop
       puts "\n"
     end
 
-    case decision
-    when 1
-      puts "Dmg" # define function with attacks in each case
-    when 2
-      puts "Uti"
-    when 3
-      puts "Def"
-    when 4
-      puts "Rec"
-    when 5
-      puts "Don"
-    else
-    end
+    Moves.choose(decision)
+
+    # case decision
+    # when 1
+    #   puts "Dmg"
+    # when 2
+    #   puts "Uti"
+    # when 3
+    #   puts "Def"
+    # when 4
+    #   puts "Rec"
+    # when 5
+    #   puts "Don"
+    # else
+    # end
   end
 end
 
