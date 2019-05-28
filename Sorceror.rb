@@ -3,6 +3,8 @@
 
 require 'colorize'
 
+# TODO: Split program into multiple files
+
 def set_vars(ratio)
   $player_health = (80 / ratio).to_i
   $enemy_health = (100 * (ratio * 0.95)).to_i
@@ -57,10 +59,10 @@ end
 def player_analysis
 
   names = ['Harshvir', 'Oliver', 'Harry', 'Jack', 'George', 'Noah', 'Bruce', 'Charlie', 'Jacob', 'Alfie', 'Freddie', 'Oscar', 'Olivia', 'Amelia', 'Isla', 'Emily', 'Ava', 'Lily', 'Mia', 'Sophia', 'Isabella', 'Grace', 'Lisa Ann']
-  puts "Welcoming #{$player_name = names.sample.blue} to the arena!"; sleep(2)
+  puts "Welcoming #{$player_name = names.sample.light_blue} to the arena!"; sleep(2)
   puts "Your health: #{$player_health}"; sleep(1)
   puts "Your mana: #{$player_mana}"; sleep(1)
-  puts "\nWelcoming #{$enemy_name = names.sample.red} to the arena!"; sleep(2)
+  puts "\nWelcoming #{$enemy_name = names.sample.light_red} to the arena!"; sleep(2)
   puts "Enemy's health: #{$enemy_health}"; sleep(1)
   puts "Enemy's mana: #{$enemy_mana}\n"; sleep(1)
   game_loop
@@ -95,7 +97,7 @@ def game_loop
 
     case decision
     when 1
-      puts "Dmg"
+      puts "Dmg" # define function with attacks in each case
     when 2
       puts "Uti"
     when 3
