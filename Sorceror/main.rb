@@ -63,19 +63,12 @@ end
 def player_analysis
 
   names = ['Harshvir', 'Oliver', 'Harry', 'Jack', 'George', 'Noah', 'Bruce', 'Charlie', 'Jacob', 'Alfie', 'Freddie', 'Oscar', 'Olivia', 'Amelia', 'Isla', 'Emily', 'Ava', 'Lily', 'Mia', 'Sophia', 'Isabella', 'Grace', 'Lisa Ann']
-<<<<<<< HEAD:Sorceror.rb
-  puts "Welcoming #{$player_name = names.sample.light_blue} to the arena!"; sleep(2)
-  puts "Your health: #{$player_health}"; sleep(1)
-  puts "Your mana: #{$player_mana}"; sleep(1)
-  puts "\nWelcoming #{$enemy_name = names.sample.light_red} to the arena!"; sleep(2)
-=======
   types = ['Fire', 'Ice', 'Water']
   puts "Welcoming #{$player_name = names.sample.blue} to the arena!"; sleep(2)
   puts "Your health: #{$player_health}"; sleep(1)
   puts "Your mana: #{$player_mana}"; sleep(1)
   puts "Your magic type: #{$player_type = types.sample}"
   puts "\nWelcoming #{$enemy_name = names.sample.red} to the arena!"; sleep(2)
->>>>>>> ed709ac236d616aace3b26bf30624784883eccaf:Sorceror/main.rb
   puts "Enemy's health: #{$enemy_health}"; sleep(1)
   puts "Enemy's mana: #{$enemy_mana}\n"; sleep(1)
   puts "Enemy's magic type: #{$enemy_type = types.sample}"
