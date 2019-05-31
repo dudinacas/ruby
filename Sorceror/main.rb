@@ -111,7 +111,7 @@ def game_loop
 
     # Pre-decision stuff ends here
 
-    puts "\nYour current health: #{$player_current_health}/#{$player_health}" # need to move this into moves.decision or smth or shit be messed up
+    puts "\nYour current health: #{$player_current_health}/#{$player_health}" # need to move this block into moves.decision or smth or shit be messed up
     puts "Your current mana: #{$player_current_mana}/#{$player_mana}"
     puts "#{$enemy_name}'s current health: #{$enemy_current_health}/#{$enemy_health}"
     puts "#{$enemy_name}'s current mana: #{$enemy_current_mana}/#{$enemy_mana}"
