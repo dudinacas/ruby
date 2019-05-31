@@ -79,6 +79,9 @@ end
 
 def game_loop
 
+  # Declare global variables here
+
+  $ongoing_player_damage = [0, 0, 0, 0]
   $player_current_health = $player_health
   $enemy_current_health = $enemy_health
   $player_current_mana = $player_mana
@@ -87,7 +90,28 @@ def game_loop
   $enemy_current_damage = $enemy_damage
 
   while true do
-    puts "\nYour current health: #{$player_current_health}/#{$player_health}"
+
+    ## Pre-decision stuff goes here
+
+    if $enemy_current_health <= 0
+      puts "#{$enemy_name} has been fatally wounded!"
+      puts "#{$player_name} wins!"
+      break
+    end
+
+    # enemy's move will go here
+
+    # player health check will go here
+
+    if $ongoing_player_damage[0] >= 1
+      Moves.std_attack($player_type, $ongoing_player_damage[1], $ongoing_player_damage[2], $ongoing_player_damage[3])
+      $ongoing_player_damage[0] -= 1
+      puts "Enemy is inflicted with #{Moves.indicate_damage} damage"
+    end
+
+    # Pre-decision stuff ends here
+
+    puts "\nYour current health: #{$player_current_health}/#{$player_health}" # need to move this into moves.decision or smth or shit be messed up
     puts "Your current mana: #{$player_current_mana}/#{$player_mana}"
     puts "#{$enemy_name}'s current health: #{$enemy_current_health}/#{$enemy_health}"
     puts "#{$enemy_name}'s current mana: #{$enemy_current_mana}/#{$enemy_mana}"
@@ -104,8 +128,6 @@ def game_loop
     end
 
     Moves.choose(decision)
-
-    # enemy's move will go here
 
   end
 end
