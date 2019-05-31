@@ -3,13 +3,13 @@ module Moves
   def choose(dec)
     case dec
     when 1
-      Moves.attack
+      attack
     when 2
       puts "Uti"
     when 3
       puts "Def"
     when 4
-      puts "Rec"
+      recover
     when 5
       puts "Don"
     else
@@ -31,45 +31,54 @@ module Moves
     move = move.to_i
     case move
     when 1
-      if $player_current_mana >= 10
-        $player_current_mana -= 10
-        puts "You use #{$player_type} Ball" # add crit system
-      else
-        print "Not enough mana!"
-      end
+      std_attack($player_type, " Ball", 10, 10)
     when 2
-      if $player_current_mana >= 20
-        $player_current_mana -= 20
-        puts "You use #{$player_type} Storm"
-      else
-        print "Not enough mana!"
-      end
+      std_attack($player_type, " Storm", 24, 20) # change in future
     when 3
-      if $player_current_mana >= 60
-        $player_current_mana -= 60
-        puts "You use Meteor"
-      else
-        print "Not enough mana!"
-      end
+      std_attack("", "Meteor", 50, 60)
     when 4
-      if $player_current_mana >= 15
-        $player_current_mana -= 15
-        puts "You use Leech"
-      else
-        print "Not enough mana!"
-      end
+      std_attack("", "Leech", 10, 15) # change in future
     when 5
-      if $player_current_mana >= 0
-        $player_current_mana -= 0
-        puts "You use Wand Strike"
-      else
-        print "You should never see this text, contact the developer."
-        Kernel.abort("Unhandled exception in #{__LINE__}")
-      end
+      std_attack("", "Wand Strike", 4, 0)
     when 6
-
+      return
     else
       puts "Invalid move."
+    end
+  end
+
+  def roll_crit
+    crit = rand(1..100)
+    if crit >= 95
+      puts "Critical hit!"
+      @crit = 1
+    elsif crit >= 90
+      puts "Miss!"
+      @crit = 2
+    else
+      @crit = 0
+    end
+  end
+
+  def recover
+    mana_recovery = rand(5..25)
+    if $player_current_mana + mana_recovery > $player_mana
+      player_recovered = $player_mana - $player_current_mana
+      $player_current_mana = $player_mana
+    else
+      $player_current_mana += mana_recovery
+      player_recovered = mana_recovery
+    end
+    puts "You recover #{player_recovered} MP"
+  end
+
+  def std_attack(element, name, damage, mana)
+    if $player_current_mana >= mana
+      $player_current_mana -= mana
+      puts "You use #{element}#{name}" # add crit system
+      roll_crit
+    else
+      print "Not enough mana!"
     end
   end
 
