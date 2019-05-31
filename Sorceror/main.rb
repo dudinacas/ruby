@@ -53,10 +53,11 @@ def init_game
     Kernel.abort("Unhandled exception in #{__LINE__}")
   end
 
-  print "Starting Sorceror"
+  print "\nStarting Sorceror"
   print "."; sleep(0.5)
   print "."; sleep(0.5)
   print ".\n\n"; sleep(0.5)
+  system "clear" or system "cls"
   player_analysis
 end
 
@@ -64,14 +65,14 @@ def player_analysis
 
   names = ['Harshvir', 'Oliver', 'Harry', 'Jack', 'George', 'Noah', 'Bruce', 'Charlie', 'Jacob', 'Alfie', 'Freddie', 'Oscar', 'Olivia', 'Amelia', 'Isla', 'Emily', 'Ava', 'Lily', 'Mia', 'Sophia', 'Isabella', 'Grace', 'Lisa Ann']
   types = ['Fire', 'Ice', 'Water']
-  puts "Welcoming #{$player_name = names.sample.blue} to the arena!"; sleep(2)
-  puts "Your health: #{$player_health}"; sleep(1)
-  puts "Your mana: #{$player_mana}"; sleep(1)
-  puts "Your magic type: #{$player_type = types.sample}"
-  puts "\nWelcoming #{$enemy_name = names.sample.red} to the arena!"; sleep(2)
-  puts "Enemy's health: #{$enemy_health}"; sleep(1)
-  puts "Enemy's mana: #{$enemy_mana}\n"; sleep(1)
-  puts "Enemy's magic type: #{$enemy_type = types.sample}"
+  puts "Welcoming #{$player_name = names.sample.blue} to the arena!"; sleep(1)
+  puts "Your health: #{$player_health}"; sleep(0.5)
+  puts "Your mana: #{$player_mana}"; sleep(0.5)
+  puts "Your magic type: #{$player_type = types.sample}"; sleep(0.5)
+  puts "\nWelcoming #{$enemy_name = names.sample.red} to the arena!"; sleep(1)
+  puts "Enemy's health: #{$enemy_health}"; sleep(0.5)
+  puts "Enemy's mana: #{$enemy_mana}\n"; sleep(0.5)
+  puts "Enemy's magic type: #{$enemy_type = types.sample}"; sleep(0.5)
   game_loop
 
 end
@@ -104,19 +105,8 @@ def game_loop
 
     Moves.choose(decision)
 
-    # case decision
-    # when 1
-    #   puts "Dmg"
-    # when 2
-    #   puts "Uti"
-    # when 3
-    #   puts "Def"
-    # when 4
-    #   puts "Rec"
-    # when 5
-    #   puts "Don"
-    # else
-    # end
+    # enemy's move will go here
+
   end
 end
 

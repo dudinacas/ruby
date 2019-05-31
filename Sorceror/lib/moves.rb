@@ -3,15 +3,15 @@ module Moves
   def choose(dec)
     case dec
     when 1
-      attack
+      Moves.attack # I know I don't need to declare the module but it's for clarity
     when 2
       puts "Uti"
     when 3
       puts "Def"
     when 4
-      recover
+      Moves.recover
     when 5
-      puts "Don"
+      puts "You do nothing."
     else
     end
   end
@@ -31,15 +31,20 @@ module Moves
     move = move.to_i
     case move
     when 1
-      std_attack($player_type, " Ball", 10, 10)
+      Moves.std_attack($player_type, " Ball", 10, 10)
+      puts "Damage #{@@damage}"
     when 2
-      std_attack($player_type, " Storm", 24, 20) # change in future
+      Moves.std_attack($player_type, " Storm", 24, 20) # change in future
+      puts "Damage #{@@damage}"
     when 3
-      std_attack("", "Meteor", 50, 60)
+      Moves.std_attack("", "Meteor", 50, 60)
+      puts "Damage #{@@damage}"
     when 4
-      std_attack("", "Leech", 10, 15) # change in future
+      Moves.std_attack("", "Leech", 10, 15) # change in future
+      puts "Damage #{@@damage}"
     when 5
-      std_attack("", "Wand Strike", 4, 0)
+      Moves.std_attack("", "Wand Strike", 4, 0)
+      puts "Damage #{@@damage}"
     when 6
       return
     else
@@ -51,12 +56,12 @@ module Moves
     crit = rand(1..100)
     if crit >= 95
       puts "Critical hit!"
-      @crit = 1
+      @crit_mult = 2
     elsif crit >= 90
       puts "Miss!"
-      @crit = 2
+      @crit_mult = 0
     else
-      @crit = 0
+      @crit_mult = 1
     end
   end
 
@@ -75,10 +80,24 @@ module Moves
   def std_attack(element, name, damage, mana)
     if $player_current_mana >= mana
       $player_current_mana -= mana
-      puts "You use #{element}#{name}" # add crit system
-      roll_crit
+      puts "You use #{element}#{name}"
+      if element == $player_type
+        if $enemy_type == $player_type
+          dmg_mult = 1
+        elsif ($enemy_type == 'Fire' && $player_type == 'Water') or ($enemy_type == 'Water' && $player_type == 'Ice') or ($enemy_type == 'Ice' && $player_type == 'Fire')
+          dmg_mult = 1.5
+        else
+          dmg_mult = 0.5
+        end
+      else
+        dmg_mult = 1.1
+      end
+      Moves.roll_crit
+      @@damage = ($player_current_damage * @crit_mult * dmg_mult * damage) / 100
+      @@damage = @@damage.to_i
     else
-      print "Not enough mana!"
+      puts "Not enough mana!"
+      @@damage = 0
     end
   end
 
