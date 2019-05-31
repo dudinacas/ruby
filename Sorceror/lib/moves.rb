@@ -1,21 +1,38 @@
 module Moves
 
+  def decision
+    while @turn_complete == 0
+      puts "\nWhat do you do?"
+      puts "1. Damaging Spells / 2. Utility Spells / 3. Defensive Spells / 4. Recharge Mana / 5. Do nothing"
+      print ">"
+      decision = $stdin.gets.chomp
+      decision = decision.to_i
+
+      if !decision.between?(1,5)
+        puts "Please input a valid number."
+      else
+        puts "\n"
+        Moves.choose(decision)
+      end
+    end
+  end
+
   def choose(dec)
     case dec
     when 1
       Moves.attack # I know I don't need to declare the module but it's for clarity
     when 2
       puts "Uti"
-      break
+      @turn_complete = 1
     when 3
       puts "Def"
-      break
+      @turn_complete = 1
     when 4
       Moves.recover
-      break
+      @turn_complete = 1
     when 5
       puts "You do nothing."
-      break
+      @turn_complete = 1
     else
     end
   end
@@ -33,6 +50,7 @@ module Moves
     print ">"
     move = $stdin.gets.chomp
     move = move.to_i
+    puts ""
     case move
     when 1
       Moves.std_attack($player_type, " Ball", 10, 10)
@@ -76,6 +94,7 @@ module Moves
       player_recovered = mana_recovery
     end
     puts "You recover #{player_recovered} MP"
+    @turn_complete = 1
   end
 
   def heal(min, max)
@@ -88,6 +107,7 @@ module Moves
       player_healed = player_healing
     end
     puts "You recover #{player_healed} HP"
+    @turn_complete = 1
   end
 
   def std_attack(element, name, damage, mana)
@@ -97,7 +117,7 @@ module Moves
       if element == $player_type
         if $enemy_type == $player_type
           dmg_mult = 1
-        elsif ($enemy_type == 'Fire' && $player_type == 'Water') or ($enemy_type == 'Water' && $player_type == 'Ice') or ($enemy_type == 'Ice' && $player_type == 'Fire')
+        elsif ($enemy_type == 'Fire' && $player_type == 'Water') or ($enemy_type == 'Water' && $player_type == 'Ice') or ($enemy_type == 'Ice' && $player_type == 'Fire') # find way to use array for this
           dmg_mult = 1.5
         else
           dmg_mult = 0.5
@@ -119,6 +139,10 @@ module Moves
 
   def indicate_damage
     damage = @@damage
+  end
+
+  def init_turn_complete
+    @turn_complete = 0
   end
 
 end

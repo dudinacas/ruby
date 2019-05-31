@@ -115,19 +115,9 @@ def game_loop
     puts "Your current mana: #{$player_current_mana}/#{$player_mana}"
     puts "#{$enemy_name}'s current health: #{$enemy_current_health}/#{$enemy_health}"
     puts "#{$enemy_name}'s current mana: #{$enemy_current_mana}/#{$enemy_mana}"
-    puts "\nWhat do you do?"
-    puts "1. Damaging Spells / 2. Utility Spells / 3. Defensive Spells / 4. Recharge Mana / 5. Do nothing"
-    print ">"
-    decision = $stdin.gets.chomp
-    decision = decision.to_i
 
-    if !decision.between?(1,5)
-      puts "Please input a valid number."
-    else
-      puts "\n"
-    end
-
-    Moves.choose(decision)
+    Moves.init_turn_complete
+    Moves.decision
 
   end
 end
