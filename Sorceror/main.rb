@@ -1,7 +1,7 @@
 # Sorceror - a mage combat game
 # Created by Zachary Picone, released under the WTFPL
 
-# this code is held together with glue and global variables
+# this code is held together with global variables and love
 
 require 'colorize'
 require_relative './lib/moves.rb'
@@ -82,6 +82,7 @@ def game_loop
   # Declare global variables here
 
   $ongoing_player_damage = [0, 0, 0, 0]
+  $ongoing_enemy_damage = [0, 0, 0, 0]
   $player_current_health = $player_health
   $enemy_current_health = $enemy_health
   $player_current_mana = $player_mana

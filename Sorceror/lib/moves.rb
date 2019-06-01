@@ -46,7 +46,6 @@ module Moves
     puts "4. Leech         10 Base Damage      15 Mana"
     puts "5. Wand Strike   4 Base Damage       0 Mana"
     puts "6. Cancel"
-    # need to loop this
     print ">"
     move = $stdin.gets.chomp
     move = move.to_i
@@ -69,6 +68,32 @@ module Moves
     else
       puts "Invalid move."
     end
+  end
+
+  def utility # not yet used
+    puts "What utility move would you like to use?"
+    puts "1. Cripple       CPU -50% Atk next turn       20 Mana"
+    puts "2. Shatter       CPU -50% Def next turn       20 Mana" # which is literally the same as charge for 5 more mana, pranked
+    puts "3. Charge        Player +50% Atk next turn    15 Mana"
+    puts "4. Turbocharge   Player +100% Atk next turn   35 Mana"
+    puts "5. Cancel"
+    print ">"
+    move = $stdin.gets.chomp
+    move = move.to_i
+    puts ""
+  end
+
+  def defensive # not yet used
+    puts "What defensive move would you like to use?"
+    puts "1. Recover       Heal 20-60 health                 22 Mana"
+    puts "2. Shield        Player +50% Def next 2 turns      15 Mana" # of course, defense isn't a real stat...
+    puts "3. Fortify       Player +75% Def next 3 turns      40 Mana"
+    puts "4. Barrier       Block next attack                 25 Mana" # but utility/defensive moves still work
+    puts "5. Cancel"
+    print ">"
+    move = $stdin.gets.chomp
+    move = move.to_i
+    puts ""
   end
 
   def roll_crit
