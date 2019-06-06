@@ -22,11 +22,11 @@ module Moves
     when 1
       Moves.attack # I know I don't need to declare the module in these functions but it's for clarity
     when 2
-      puts "Uti"
-      @turn_complete = 1
+      Moves.utility
+      @turn_complete = 1 # comment out this line when testing
     when 3
-      puts "Def"
-      @turn_complete = 1
+      Moves.defensive
+      @turn_complete = 1 # comment out this line when testing
     when 4
       Moves.recover
       @turn_complete = 1
@@ -72,8 +72,8 @@ module Moves
 
   def utility # not yet used
     puts "What utility move would you like to use?"
-    puts "1. Cripple       CPU -50% Atk next turn       20 Mana"
-    puts "2. Shatter       CPU -50% Def next turn       20 Mana" # which is literally the same as charge for 5 more mana, pranked
+    puts "1. Cripple       CPU -50% Atk next turn       10 Mana"
+    puts "2. Shatter       CPU -50% Def next turn       20 Mana" # which is literally the same as turbocharge for 15 less mana, pranked
     puts "3. Charge        Player +50% Atk next turn    15 Mana"
     puts "4. Turbocharge   Player +100% Atk next turn   35 Mana"
     puts "5. Cancel"
@@ -81,6 +81,16 @@ module Moves
     move = $stdin.gets.chomp
     move = move.to_i
     puts ""
+    case move
+    when 1
+      # halve enemy damage for 1 turn
+    when 2
+      # double player damage for 1 turn
+    when 3
+      # 1.5x player damage for 1 turn
+    when 4
+      # double player damage for 1 turn
+    end
   end
 
   def defensive # not yet used
@@ -94,6 +104,18 @@ module Moves
     move = $stdin.gets.chomp
     move = move.to_i
     puts ""
+    case move
+    when 1
+      if $player_current_mana >= 22
+        Moves.heal(20, 60)
+      end
+    when 2
+      # halve enemy damage for 2 turns
+    when 3
+      # quarter enemy damage for 3 turns
+    when 4
+      # if statement for enemy attack in main
+    end
   end
 
   def roll_crit
@@ -122,7 +144,7 @@ module Moves
     @turn_complete = 1
   end
 
-  def heal(min, max)
+  def heal(min, max) # minimum and maximum flat health healed
     player_healing = (rand(min..max) * @crit_mult)
     if $player_current_health + player_healing > $player_health
       player_healed = $player_health - $player_current_health
@@ -157,7 +179,7 @@ module Moves
       puts "Enemy is dealt #{@@damage} damage"
       @turn_complete = 1 # these indicate for Moves.decision to end
     else
-      puts "Not enough mana!"
+      puts "Not enough mana to use #{element}#{name}!"
       @@damage = 0
     end
   end
