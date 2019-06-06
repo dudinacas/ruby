@@ -20,7 +20,7 @@ module Moves
   def choose(dec)
     case dec
     when 1
-      Moves.attack # I know I don't need to declare the module but it's for clarity
+      Moves.attack # I know I don't need to declare the module in these functions but it's for clarity
     when 2
       puts "Uti"
       @turn_complete = 1
@@ -142,7 +142,7 @@ module Moves
       if element == $player_type
         if $enemy_type == $player_type
           dmg_mult = 1
-        elsif ($enemy_type == 'Fire' && $player_type == 'Water') or ($enemy_type == 'Water' && $player_type == 'Ice') or ($enemy_type == 'Ice' && $player_type == 'Fire') # find way to use array for this
+        elsif ($enemy_type == 'Fire' && $player_type == 'Water') or ($enemy_type == 'Water' && $player_type == 'Ice') or ($enemy_type == 'Ice' && $player_type == 'Fire') # find way to use array for this in future
           dmg_mult = 1.5
         else
           dmg_mult = 0.5
@@ -155,7 +155,7 @@ module Moves
       @@damage = @@damage.to_i
       $enemy_current_health = $enemy_current_health - @@damage
       puts "Enemy is dealt #{@@damage} damage"
-      @turn_complete = 1 # does nothing right now
+      @turn_complete = 1 # these indicate for Moves.decision to end
     else
       puts "Not enough mana!"
       @@damage = 0

@@ -92,7 +92,7 @@ def game_loop
 
   while true do
 
-    ## Pre-decision stuff goes here
+    # Pre-decision stuff goes here
 
     if $enemy_current_health <= 0
       puts "#{$enemy_name} has been fatally wounded!"
