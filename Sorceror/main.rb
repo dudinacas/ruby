@@ -83,6 +83,7 @@ def game_loop
 
   $ongoing_player_damage = [0, 0, 0, 0]
   $ongoing_enemy_damage = [0, 0, 0, 0]
+  $player_block = 0
   $player_current_health = $player_health
   $enemy_current_health = $enemy_health
   $player_current_mana = $player_mana
@@ -100,9 +101,17 @@ def game_loop
       break
     end
 
-    # enemy's move will go here
+    if $player_block > 0
+      $player_block -= 1
+      puts "The attack is nullified by Barrier!"
 
-    # player health check will go here
+    else
+
+      # enemy's move will go here
+
+      # player health check will go here
+
+    end
 
     if $ongoing_player_damage[0] >= 1
       Moves.std_attack($player_type, $ongoing_player_damage[1], $ongoing_player_damage[2], $ongoing_player_damage[3])

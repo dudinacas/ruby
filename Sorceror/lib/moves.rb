@@ -114,7 +114,7 @@ module Moves
     when 3
       # quarter enemy damage for 3 turns
     when 4
-      # if statement for enemy attack in main
+      $player_block += 1
     end
   end
 
