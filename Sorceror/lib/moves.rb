@@ -114,7 +114,10 @@ module Moves
     when 3
       # quarter enemy damage for 3 turns
     when 4
-      $player_block += 1
+      if $player_current_mana >= 15
+        puts "#{$player_name} casted Barrier"
+        $player_block += 1
+      end
     end
   end
 

@@ -95,6 +95,12 @@ def game_loop
 
     # Pre-decision stuff goes here
 
+    if $ongoing_player_damage[0] >= 1
+      Moves.std_attack($player_type, $ongoing_player_damage[1], $ongoing_player_damage[2], $ongoing_player_damage[3])
+      $ongoing_player_damage[0] -= 1
+      puts "Enemy is inflicted with #{Moves.indicate_damage} damage"
+    end
+
     if $enemy_current_health <= 0
       puts "#{$enemy_name} has been fatally wounded!"
       puts "#{$player_name} wins!"
@@ -103,7 +109,7 @@ def game_loop
 
     if $player_block > 0
       $player_block -= 1
-      puts "The attack is nullified by Barrier!"
+      puts "The attack is nullified by Barrier!" # put player_block code in enemy move section
 
     else
 
@@ -113,15 +119,9 @@ def game_loop
 
     end
 
-    if $ongoing_player_damage[0] >= 1
-      Moves.std_attack($player_type, $ongoing_player_damage[1], $ongoing_player_damage[2], $ongoing_player_damage[3])
-      $ongoing_player_damage[0] -= 1
-      puts "Enemy is inflicted with #{Moves.indicate_damage} damage"
-    end
-
     # Pre-decision stuff ends here
 
-    puts "\nYour current health: #{$player_current_health}/#{$player_health}" # need to move this block into moves.decision or smth or shit be messed up
+    puts "\nYour current health: #{$player_current_health}/#{$player_health}"
     puts "Your current mana: #{$player_current_mana}/#{$player_mana}"
     puts "#{$enemy_name}'s current health: #{$enemy_current_health}/#{$enemy_health}"
     puts "#{$enemy_name}'s current mana: #{$enemy_current_mana}/#{$enemy_mana}"
