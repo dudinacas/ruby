@@ -72,10 +72,10 @@ module Moves
 
   def utility # not yet used
     puts "What utility move would you like to use?"
-    puts "1. Cripple       CPU -50% Atk next turn       10 Mana"
-    puts "2. Shatter       CPU -50% Def next turn       20 Mana" # which is literally the same as turbocharge for 15 less mana, pranked
-    puts "3. Charge        Player +50% Atk next turn    15 Mana"
-    puts "4. Turbocharge   Player +100% Atk next turn   35 Mana"
+    puts "1. Cripple       CPU -50% Atk next turn          10 Mana"
+    puts "2. Shatter       CPU -50% Def next turn          20 Mana"
+    puts "3. Charge        Player +50% Atk next turn       15 Mana"
+    puts "4. Turbocharge   Player +100% Atk next 2 turns   35 Mana"
     puts "5. Cancel"
     print ">"
     move = $stdin.gets.chomp
@@ -83,17 +83,21 @@ module Moves
     puts ""
     case move
     when 1
-      # halve enemy damage for 1 turn
+      # $enemy_current_damage = $enemy_damage / 2
+      # make ongoing for 1 turn
     when 2
-      # double player damage for 1 turn
+      # $player_current_damage = $player_damage * 2
+      # make ongoing for 1 turn
     when 3
-      # 1.5x player damage for 1 turn
+      # $player_current_damage = $player_damage * 1.5
+      # make ongoing for 1 turn
     when 4
-      # double player damage for 1 turn
+      # $player_current_damage = $player_damage * 2
+      # make ongoing for 2 turns // TODO: make cumulative?
     end
   end
 
-  def defensive # not yet used
+  def defensive
     puts "What defensive move would you like to use?"
     puts "1. Recover       Heal 20-60 health                 22 Mana"
     puts "2. Shield        Player +50% Def next 2 turns      15 Mana" # of course, defense isn't a real stat...
@@ -110,9 +114,11 @@ module Moves
         Moves.heal(20, 60)
       end
     when 2
-      # halve enemy damage for 2 turns
+      # $enemy_current_damage = $enemy_damage / 2
+      # make ongoing for 2 turns
     when 3
-      # quarter enemy damage for 3 turns
+      # $enemy_current_damage = $enemy_damage / 4
+      # make ongoing for 3 turns
     when 4
       if $player_current_mana >= 15
         puts "#{$player_name} casted Barrier"
