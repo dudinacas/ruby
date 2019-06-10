@@ -112,8 +112,15 @@ module Moves
     when 1
       if $player_current_mana >= 22
         Moves.heal(20, 60)
+      else
+        puts "Not enough mana to use Recover!"
       end
     when 2
+      if $player_current_mana >= 15
+        Moves.player_modifier(2, $enemy_damage, $enemy_current_damage, 0.5)
+      else
+        puts "Not enough mana to use Shield!"
+      end
       # $enemy_current_damage = $enemy_damage / 2
       # make ongoing for 2 turns
     when 3
@@ -123,6 +130,8 @@ module Moves
       if $player_current_mana >= 15
         puts "#{$player_name} casted Barrier"
         $player_block += 1
+      else
+        puts "Not enough mana to use Barrier!"
       end
     end
   end
@@ -192,6 +201,11 @@ module Moves
       @@damage = 0
     end
   end
+
+  def player_modifier(duration, constant, stat, modifier)
+    turns = $ingame_turn
+    stat = constant * modifier
+    # idk what to do here
 
   def indicate_damage
     damage = @@damage

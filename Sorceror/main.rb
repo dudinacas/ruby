@@ -84,6 +84,7 @@ def game_loop
   $ongoing_player_damage = [0, 0, 0, 0]
   $ongoing_enemy_damage = [0, 0, 0, 0]
   $player_block = 0
+  $game_turn = 0
   $player_current_health = $player_health
   $enemy_current_health = $enemy_health
   $player_current_mana = $player_mana
@@ -92,6 +93,8 @@ def game_loop
   $enemy_current_damage = $enemy_damage
 
   while true do
+
+    $game_turn += 1
 
     # Pre-decision stuff goes here
 
