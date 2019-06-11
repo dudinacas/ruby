@@ -117,7 +117,7 @@ module Moves
       end
     when 2
       if $player_current_mana >= 15
-        Moves.player_modifier(2, $enemy_damage, $enemy_current_damage, 0.5)
+        puts "Shield goes here."
       else
         puts "Not enough mana to use Shield!"
       end
@@ -201,11 +201,6 @@ module Moves
       @@damage = 0
     end
   end
-
-  def player_modifier(duration, constant, stat, modifier)
-    turns = $ingame_turn
-    stat = constant * modifier
-    # idk what to do here
 
   def indicate_damage
     damage = @@damage

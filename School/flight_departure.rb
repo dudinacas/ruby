@@ -18,7 +18,7 @@ end
 final_time_s = final_time.to_s
 
 if final_time_s.length < 4
- final_time_s = ('0' * (4 - final_time_s.length)) + final_time_s
+  final_time_s = ('0' * (4 - final_time_s.length)) + final_time_s
 end
 final_time_s = final_time_s.insert(2, ':').blue
 

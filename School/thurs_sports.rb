@@ -1,7 +1,10 @@
+sports = ['football', 'basketball', 'rugby', 'hockey']
+sports_teams = [11, 5, 15, 11]
+
 def calculate(team, count, sport)
   team_num = count / team
   reserves = count % team
-  puts "There can be #{team_num} #{sport} teams, and #{reserves} players left over."
+  return team_num, reserves
 end
 
 puts "Which sport would you like to calculate? [football/rugby/basketball/hockey]"
@@ -10,14 +13,9 @@ response = false
 while response == false do
   print ">"
   ans = $stdin.gets.chomp
-  if ans == "football" # change to arrays
+  if sports.include?(ans)
     response = true
-  elsif ans == "rugby"
-    response = true
-  elsif ans == "basketball"
-    response = true
-  elsif ans == "hockey"
-    response = true
+    sports_num = sports.index(ans)
   else
     puts "Invalid input."
   end
@@ -37,13 +35,5 @@ while response == false do
   end
 end
 
-case
-when "football"
-  calculate(14, num, "football")
-when "rugby"
-  calculate(22, num, "rugby")
-when "basketball"
-  calculate(9, num, "basketball")
-when "hockey"
-  calculate(11, num, "hockey")
-end
+data = calculate(sports_teams[sports_num], num, ans)
+puts "There can be #{data[0]} #{ans} team(s), and #{data[1]} player(s) will be left over."
