@@ -36,4 +36,4 @@ while response == false do
 end
 
 data = calculate(sports_teams[sports_num], num, ans)
-puts "There can be #{data[0]} #{ans} team(s), and #{data[1]} player(s) will be left over."
+puts "There can be #{data[0]} #{sports[sports_num]} team(s), and #{data[1]} player(s) will be left over."
