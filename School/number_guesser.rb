@@ -1,4 +1,3 @@
-guess = 0
 p1_guess = 0
 p2_guess = 0
 p1_count = 0
