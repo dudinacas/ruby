@@ -8,20 +8,19 @@ def game(player_hand)
   if !@hands.include?(player_hand)
     puts "Invalid move.\n\n"
   else
-    ai_hand = @hands.sample
+    ai_hand = @hands.sample # picks random hand for ai
     if(ai_hand == 'paper' && player_hand == 'scissors') or (ai_hand == 'rock' && player_hand == 'paper') or (ai_hand == 'scissors' && player_hand == 'rock') # I know this is hardcoded, I'm a terrible person
-      puts "#{player_hand.capitalize} beats #{ai_hand}!"
+      puts "\n#{player_hand.capitalize} beats #{ai_hand}!"
       puts "Player wins!"
       @player_score += 1
     elsif ai_hand == player_hand
-      puts "#{player_hand.capitalize} draws with #{ai_hand}!"
+      puts "\n#{player_hand.capitalize} draws with #{ai_hand}!"
       puts "Nobody wins!"
     else
-      puts "#{ai_hand.capitalize} beats #{player_hand}!"
+      puts "\n#{ai_hand.capitalize} beats #{player_hand}!"
       puts "CPU wins!"
       @cpu_score += 1
     end
-    score_count
   end
 end
 
@@ -46,5 +45,16 @@ while true do
   decision = $stdin.gets.chomp
   decision = decision.strip.downcase
   game(decision)
+  if @player_score == 5
+    puts "\nPlayer is victorious!"
+    puts "Player's score: #{@player_score}. CPU's score: #{@cpu_score}"
+    break
+  elsif @cpu_score == 5
+    puts "\nCPU is victorious!"
+    puts "CPU's score: #{@cpu_score}. Player's score: #{@player_score}"
+    break
+  else
+    score_count
+  end
 end
 
