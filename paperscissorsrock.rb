@@ -1,6 +1,7 @@
 # simple paper scissors rock game against cpu
 
 @hands = ['paper', 'rock', 'scissors']
+@winning_hands = ['scissorspaper', 'paperrock', 'rockscissors']
 @player_score = 0
 @cpu_score = 0
 
@@ -9,7 +10,7 @@ def game(player_hand)
     puts "Invalid move.\n\n"
   else
     ai_hand = @hands.sample # picks random hand for ai
-    if(ai_hand == 'paper' && player_hand == 'scissors') or (ai_hand == 'rock' && player_hand == 'paper') or (ai_hand == 'scissors' && player_hand == 'rock') # I know this is hardcoded, I'm a terrible person
+    if @winning_hands.include?(player_hand + ai_hand) # checks if your hand has won
       puts "\n#{player_hand.capitalize} beats #{ai_hand}!"
       puts "Player wins!"
       @player_score += 1
