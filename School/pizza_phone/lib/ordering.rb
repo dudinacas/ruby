@@ -1,6 +1,10 @@
+# Pizza ordering service, ordering module
+# Copyright (C) 2019 Zachary Picone
+# This software is released through the GNU Affero General Public License, version 3. For more information, see the LICENSE file.
+
 module Ordering
 
-  def build_order_list(list)
+  def buildOrderList(list)
     list.each_index do |i|
       puts "#{i+1}: #{list[i][0]} - $#{list[i][1]}"
       @number = i+1
@@ -8,7 +12,7 @@ module Ordering
     puts "#{@number+1}: Cancel ordering"
   end
 
-  def pick_order(list, count)
+  def pickOrder(list, count)
     ordered_items = Array.new
     item_table = Array.new
     total_price = 0
@@ -24,7 +28,8 @@ module Ordering
         selection = $stdin.gets.to_i
         if selection == (list.length + 1) # number after last pizza, eg. cancel order
           puts "Order cancelled."
-          exit
+          return false
+          break
         elsif list.fetch(selection - 1, "fail") == "fail" # if number is negative or invalid
           puts "Invalid number."
         elsif selection > 0 # if this is not checked, program will take the last item in array upon no number entered
@@ -51,7 +56,7 @@ module Ordering
     return ordered_items, total_price, item_table
   end
 
-  def order_transport
+  def orderTransport
     customer_info = Array.new
     valid = false
     valid_num = false
@@ -72,7 +77,7 @@ module Ordering
         print ">"
         customer_info << $stdin.gets.chomp
         puts "What is the customer's phone number?"
-        until valid_num == true
+        until valid_num == true # break this into separate function validatePhoneNumber
           print ">"
           input_num = $stdin.gets.to_i # checking if phone number is valid
           if input_num.digits.count >= 7 and input_num.digits.count <= 10
@@ -87,12 +92,17 @@ module Ordering
         valid = true
       elsif input == "cancel"
         puts "Order cancelled."
-        exit
+        return false # reports false instead of array
+        break
       else
         puts "Invalid input."
       end
     end
     return input, customer_info
+  end
+
+  def validatePhoneNumber
+    # not done yet
   end
 
 end
