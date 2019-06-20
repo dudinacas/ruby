@@ -58,4 +58,3 @@ while true do
     score_count
   end
 end
-
