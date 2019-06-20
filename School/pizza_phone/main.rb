@@ -91,3 +91,6 @@ while true # infinite loop, quit by exit commands
   end
 
 end
+
+# TODO: number_to_currency() ?
+# move more stuff to ordering.rb
