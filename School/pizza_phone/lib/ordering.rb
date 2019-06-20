@@ -55,24 +55,28 @@ module Ordering
     customer_info = Array.new
     valid = false
     valid_num = false
-    puts "Would you like to pickup or takeaway? [pickup / delivery / cancel]"
+    puts "Is it pickup or delivery? [pickup / delivery / cancel]"
     until valid == true
       print ">"
       input = $stdin.gets.chomp.downcase
       if input == "pickup"
-        print "What is the customer's name? "
-        customer_info << $stdin.gets.chomp
+        puts "What is the customer's name?"
+        print ">"
+        customer_info << $stdin.gets.chomp # appends customer name to customer_info array
         valid = true
       elsif input == "delivery"
-        print "What is the customer's name? "
+        puts "What is the customer's name?"
+        print ">"
         customer_info << $stdin.gets.chomp
-        print "What is the customer's address? "
+        puts "What is the customer's address?"
+        print ">"
         customer_info << $stdin.gets.chomp
-        print "What is the customer's phone number? "
+        puts "What is the customer's phone number?"
         until valid_num == true
+          print ">"
           input_num = $stdin.gets.to_i # checking if phone number is valid
-          if input_num.digits.count == 7
-            customer_info << input
+          if input_num.digits.count >= 7 and input_num.digits.count <= 10
+            customer_info << input_num
             valid_num = true
           else
             puts "Invalid number."
@@ -83,7 +87,7 @@ module Ordering
         valid = true
       elsif input == "cancel"
         puts "Order cancelled."
-        break
+        exit
       else
         puts "Invalid input."
       end
