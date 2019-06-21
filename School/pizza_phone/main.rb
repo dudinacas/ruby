@@ -3,42 +3,27 @@
 # This software is released through the GNU Affero General Public License, version 3. For more information, see the LICENSE file.
 
 require_relative './lib/ordering.rb'
+require_relative './lib/verification.rb'
 include Ordering
+include Verification
 
 # to add another pizza, use this format: ["name of pizza", price of pizza]
 pizza_list = [
   ["Meatlovers", 8.5], ["Hawaiian", 8.5], ["Cheese", 8.5], ["Cheesy Garlic", 8.5], ["Pepperoni", 8.5], ["Supreme", 8.5], ["Vegetarian", 8.5], ["Butter Chicken", 13.5], ["Garlic Prawn", 13.5], ["Sweet & Sour Pork", 13.5], ["Seaweed & Anchovy", 13.5], ["Jalapeno Chicken", 13.5]
 ]
 
-puts "Welcome to Bruce's Piping-Hot Pizza!\n\n"
+puts "Welcome to Bruce's Piping-Hot Pizza!\n\n" # \n = newline
 valid = true
 
 while true # loop to restart program if order is cancelled
 
   while valid == true # infinite loop of pizza ordering program, quit by break command
 
-    puts "How many pizzas are being ordered [1-5]?" # move this to Ordering
-    selection_complete = false
-    until selection_complete == true
-      print ">"
-      selection = $stdin.gets.to_i
-      if selection < 0
-        puts "Invalid number."
-      elsif selection > 5
-        puts "Too many pizzas."
-      elsif selection >= 1
-        pizza_count = selection
-        puts "#{pizza_count} pizzas selected."
-        selection_complete = true
-      elsif selection == 0 # next block of code will cancel
-        puts "Invalid number or order cancelled."
-        break
-      else
-        puts "Invalid number."
-      end
-    end
+    puts "How many pizzas are being ordered [1-5]?"
+    count = Verification.validateItemCount(5) # makes sure given is below 6
+    pizza_count = count[0]
 
-    if selection == 0 # cancels order
+    if count[1] == 0 # cancels order if 0 pizzas ordered
       break
     end
 
@@ -99,7 +84,7 @@ while true # loop to restart program if order is cancelled
   input = $stdin.gets.chomp.downcase # so that Y and N work
 
   if input != "y" and input != "n"
-    puts "Invalid syntax." # change later
+    puts "Invalid syntax."
   elsif input == "n"
     puts "Quitting program."
     exit

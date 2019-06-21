@@ -4,7 +4,11 @@
 
 module Ordering
 
+  require_relative './verification.rb'
+  include Verification
+
   def buildOrderList(list)
+    puts "" # newline
     list.each_index do |i| # for the index (position) of each item in list
       puts "#{i+1}: #{list[i][0]} - $#{list[i][1]}" # item 0/1 in item [i] of list
       @number = i+1
@@ -49,7 +53,7 @@ module Ordering
           puts "Invalid number."
         end
       end
-      ordered_items << requested_item[0]
+      ordered_items << requested_item[0] # this could be removed, and code that uses it replaced with item_table
       total_price = total_price + requested_item[1]
       item_table << requested_item
     end
@@ -77,7 +81,7 @@ module Ordering
         print ">"
         customer_info << $stdin.gets.chomp
         puts "What is the customer's phone number?"
-        customer_info << Ordering.validatePhoneNumber # verifies phone number is possible
+        customer_info << Verification.validatePhoneNumber # verifies phone number is possible
         puts "A $3 delivery charge will be added to the customer's order."
         customer_info << 3.0 # change this if surcharge is changed
         valid = true
@@ -90,20 +94,6 @@ module Ordering
       end
     end
     return input, customer_info
-  end
-
-  def validatePhoneNumber
-    valid = false
-    until valid == true # break this into separate function validatePhoneNumber
-      print ">"
-      input = $stdin.gets.to_s.delete('^0-9') # checks if phone number valid, converts to string, deletes any non-numeric characters
-      if input.length >= 7 and input.length <= 10
-        valid = true
-      else
-        puts "Invalid number."
-      end
-    end
-    return input
   end
 
 end
