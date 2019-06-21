@@ -5,8 +5,8 @@
 module Ordering
 
   def buildOrderList(list)
-    list.each_index do |i|
-      puts "#{i+1}: #{list[i][0]} - $#{list[i][1]}"
+    list.each_index do |i| # for the index (position) of each item in list
+      puts "#{i+1}: #{list[i][0]} - $#{list[i][1]}" # item 0/1 in item [i] of list
       @number = i+1
     end
     puts "#{@number+1}: Cancel ordering"
@@ -77,18 +77,9 @@ module Ordering
         print ">"
         customer_info << $stdin.gets.chomp
         puts "What is the customer's phone number?"
-        until valid_num == true # break this into separate function validatePhoneNumber
-          print ">"
-          input_num = $stdin.gets.to_i # checking if phone number is valid
-          if input_num.digits.count >= 7 and input_num.digits.count <= 10
-            customer_info << input_num
-            valid_num = true
-          else
-            puts "Invalid number."
-          end
-        end
+        customer_info << Ordering.validatePhoneNumber # verifies phone number is possible
         puts "A $3 delivery charge will be added to the customer's order."
-        customer_info << 3.0
+        customer_info << 3.0 # change this if surcharge is changed
         valid = true
       elsif input == "cancel"
         puts "Order cancelled."
@@ -102,7 +93,17 @@ module Ordering
   end
 
   def validatePhoneNumber
-    # not done yet
+    valid = false
+    until valid == true # break this into separate function validatePhoneNumber
+      print ">"
+      input = $stdin.gets.to_s.delete('^0-9') # checks if phone number valid, converts to string, deletes any non-numeric characters
+      if input.length >= 7 and input.length <= 10
+        valid = true
+      else
+        puts "Invalid number."
+      end
+    end
+    return input
   end
 
 end

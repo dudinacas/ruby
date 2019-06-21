@@ -11,12 +11,13 @@ pizza_list = [
 ]
 
 puts "Welcome to Bruce's Piping-Hot Pizza!\n\n"
+valid = true
 
 while true # loop to restart program if order is cancelled
 
-  while true # infinite loop, quit by break command
+  while valid == true # infinite loop of pizza ordering program, quit by break command
 
-    puts "How many pizzas are being ordered?"
+    puts "How many pizzas are being ordered [1-5]?" # move this to Ordering
     selection_complete = false
     until selection_complete == true
       print ">"
@@ -30,7 +31,8 @@ while true # loop to restart program if order is cancelled
         puts "#{pizza_count} pizzas selected."
         selection_complete = true
       elsif selection == 0 # next block of code will cancel
-        puts "Order cancelled."
+        puts "Invalid number or order cancelled."
+        break
       else
         puts "Invalid number."
       end
@@ -43,11 +45,9 @@ while true # loop to restart program if order is cancelled
     Ordering.buildOrderList(pizza_list) # generates list of all pizzas
 
     pizza_chosen = Ordering.pickOrder(pizza_list, pizza_count) # creates an order. output = ordered items, total price, items ordered plus prices
-    if pizza_chosen == false
+    if pizza_chosen == false # cancels order if cancel option is selected
       break
     end
-
-    # formatting information below this line
 
     print "\nThe pizzas being ordered are "
     pizza_chosen[0].each do |i|
@@ -56,13 +56,14 @@ while true # loop to restart program if order is cancelled
     puts "and this will cost $#{pizza_chosen[1]} in total.\n\n"
 
     customer_info = Ordering.orderTransport # gets info on delivery type
-
     if customer_info == false # cancels order if cancel option is selected
       break
     end
 
+    # formatting information below this line
+
     if customer_info[0] == "delivery"
-      full_info = true
+      full_info = true # shows address and phone number, else omits
     elsif customer_info[0] == "pickup"
       full_info = false
     end
@@ -78,7 +79,7 @@ while true # loop to restart program if order is cancelled
       puts "Delivery Surcharge added: $#{customer_info[1][3]}"
     elsif full_info == false
       total_price = pizza_chosen[1]
-      puts "\nCustomer Name: #{customer_info[1][0]}"
+      puts "Customer Name: #{customer_info[1][0]}"
     end
 
     puts "Items ordered:"
@@ -87,21 +88,24 @@ while true # loop to restart program if order is cancelled
     end
 
     puts "Total Price of Order: $#{total_price}"
+    break # goes to input another order section
 
   end
 
+  valid = false
+
   puts "\nInput another order? [y/n]"
   print ">"
-  input = $stdin.gets.chomp.downcase
+  input = $stdin.gets.chomp.downcase # so that Y and N work
 
   if input != "y" and input != "n"
-    puts "Invalid syntax. Quitting program." # change later
-    exit
+    puts "Invalid syntax." # change later
   elsif input == "n"
     puts "Quitting program."
     exit
   else
-    puts "Creating another order...\n\n"
+    puts "Creating another order...\n\n" # as this is in a loop, goes back to input another order if valid is set true
+    valid = true
   end
 
 end
