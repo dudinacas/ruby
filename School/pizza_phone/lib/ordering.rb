@@ -55,11 +55,10 @@ module Ordering
           puts "Invalid number."
         end
       end
-      ordered_items << requested_item[0] # this could be removed, and code that uses it replaced with item_table
       total_price = total_price + requested_item[1]
       item_table << requested_item
     end
-    return ordered_items, total_price, item_table
+    return item_table, total_price
   end
 
   def orderTransport(surcharge)
@@ -96,6 +95,29 @@ module Ordering
       end
     end
     return input, customer_info
+  end
+
+  def outputOrder(full_info, order, customer_info)
+    puts "\n#{customer_info[1][0]}'s order:"
+    puts "Order type: #{customer_info[0].capitalize}" # capitalises "pickup" or "delivery" string
+
+    if full_info == true
+      total_price = order[1] + customer_info[1][3] # 3 dollar surcharge is stored in item [3] of nested array customer_info[1]
+      puts "Customer Name: #{customer_info[1][0]}"
+      puts "Customer Address: #{customer_info[1][1]}"
+      puts "Customer Phone: #{customer_info[1][2]}"
+      puts "Delivery Surcharge added: #{Formatting.floatToCurrency(customer_info[1][3])}"
+    elsif full_info == false
+      total_price = order[1]
+      puts "Customer Name: #{customer_info[1][0]}"
+    end
+
+    puts "Items ordered:"
+    order[0].each_index do |i| # pizza_chosen[2] is the table of items ordered
+      puts "#{order[0][i][0]} - #{Formatting.floatToCurrency(order[0][i][1])}"
+    end
+
+    puts "Total Price of Order: #{Formatting.floatToCurrency(total_price)}"
   end
 
 end

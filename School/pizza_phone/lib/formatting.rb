@@ -14,6 +14,4 @@ module Formatting
     x = "$" + x # adds currency symbol and returns x
   end
 
-  # maybe put buildOrderList here instead of Ordering
-
 end
