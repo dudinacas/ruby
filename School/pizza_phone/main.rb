@@ -40,7 +40,7 @@ while true # loop to restart program if order is cancelled
 
     print "\nThe pizzas being ordered are "
     pizza_chosen[0].each do |i|
-      print "#{i[0]}, " # i[1] is the price of the item
+      print "#{i[0]}, " # in the pizza_chosen[0] array, i[1] is the price of the item while i[0] is the name
     end
     puts "and this will cost #{Formatting.floatToCurrency(pizza_chosen[1])} in total.\n\n"
 
@@ -70,7 +70,7 @@ while true # loop to restart program if order is cancelled
   if input != "y" and input != "n"
     puts "Invalid syntax."
   elsif input == "n"
-    puts "Quitting program."
+    puts "Quitting program..."
     exit
   else
     puts "Creating another order...\n\n" # as this is in a loop, goes back to input another order if valid is set true
@@ -78,6 +78,3 @@ while true # loop to restart program if order is cancelled
   end
 
 end
-
-# TODO: number_to_currency() ?
-# move more stuff to ordering.rb

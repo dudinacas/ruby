@@ -14,4 +14,6 @@ module Formatting
     x = "$" + x # adds currency symbol and returns x
   end
 
+  # add formatting names as capitalised names (eg. bruce von pipes - Bruce Von Pipes)
+
 end
