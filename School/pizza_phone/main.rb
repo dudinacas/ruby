@@ -4,13 +4,16 @@
 
 require_relative './lib/ordering.rb'
 require_relative './lib/verification.rb'
+require_relative './lib/formatting.rb'
 include Ordering
 include Verification
+include Formatting
 
 # to add another pizza, use this format: ["name of pizza", price of pizza]
 pizza_list = [
   ["Meatlovers", 8.5], ["Hawaiian", 8.5], ["Cheese", 8.5], ["Cheesy Garlic", 8.5], ["Pepperoni", 8.5], ["Supreme", 8.5], ["Vegetarian", 8.5], ["Butter Chicken", 13.5], ["Garlic Prawn", 13.5], ["Sweet & Sour Pork", 13.5], ["Seaweed & Anchovy", 13.5], ["Jalapeno Chicken", 13.5]
 ]
+delivery_charge = 3.0
 
 puts "Welcome to Bruce's Piping-Hot Pizza!\n\n" # \n = newline
 valid = true
@@ -38,9 +41,9 @@ while true # loop to restart program if order is cancelled
     pizza_chosen[0].each do |i|
       print "#{i}, "
     end
-    puts "and this will cost $#{pizza_chosen[1]} in total.\n\n"
+    puts "and this will cost #{Formatting.floatToCurrency(pizza_chosen[1])} in total.\n\n"
 
-    customer_info = Ordering.orderTransport # gets info on delivery type
+    customer_info = Ordering.orderTransport(delivery_charge) # gets info on delivery type
     if customer_info == false # cancels order if cancel option is selected
       break
     end
@@ -61,7 +64,7 @@ while true # loop to restart program if order is cancelled
       puts "Customer Name: #{customer_info[1][0]}"
       puts "Customer Address: #{customer_info[1][1]}"
       puts "Customer Phone: #{customer_info[1][2]}"
-      puts "Delivery Surcharge added: $#{customer_info[1][3]}"
+      puts "Delivery Surcharge added: #{Formatting.floatToCurrency(customer_info[1][3])}"
     elsif full_info == false
       total_price = pizza_chosen[1]
       puts "Customer Name: #{customer_info[1][0]}"
@@ -69,10 +72,10 @@ while true # loop to restart program if order is cancelled
 
     puts "Items ordered:"
     pizza_chosen[2].each_index do |i| # pizza_chosen[2] is the table of items ordered
-      puts "#{pizza_chosen[2][i][0]} - $#{pizza_chosen[2][i][1]}"
+      puts "#{pizza_chosen[2][i][0]} - #{Formatting.floatToCurrency(pizza_chosen[2][i][1])}"
     end
 
-    puts "Total Price of Order: $#{total_price}"
+    puts "Total Price of Order: #{Formatting.floatToCurrency(total_price)}"
     break # goes to input another order section
 
   end

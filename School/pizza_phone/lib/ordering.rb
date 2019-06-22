@@ -5,12 +5,14 @@
 module Ordering
 
   require_relative './verification.rb'
+  require_relative './formatting.rb'
   include Verification
+  include Formatting
 
   def buildOrderList(list)
     puts "" # newline
     list.each_index do |i| # for the index (position) of each item in list
-      puts "#{i+1}: #{list[i][0]} - $#{list[i][1]}" # item 0/1 in item [i] of list
+      puts "#{i+1}: #{list[i][0]} - #{Formatting.floatToCurrency(list[i][1])}" # item 0/1 in item [i] of list
       @number = i+1
     end
     puts "#{@number+1}: Cancel ordering"
@@ -38,7 +40,7 @@ module Ordering
           puts "Invalid number."
         elsif selection > 0 # if this is not checked, program will take the last item in array upon no number entered
           requested_item = list[selection-1]
-          puts "You have selected #{requested_item[0]} at a price of $#{requested_item[1]}."
+          puts "You have selected #{requested_item[0]} at a price of #{Formatting.floatToCurrency(requested_item[1])}."
           puts "Are you sure you want to order this pizza? [y/n]"
           print ">"
           selection = $stdin.gets.chomp.downcase
@@ -60,7 +62,7 @@ module Ordering
     return ordered_items, total_price, item_table
   end
 
-  def orderTransport
+  def orderTransport(surcharge)
     customer_info = Array.new
     valid = false
     valid_num = false
@@ -82,8 +84,8 @@ module Ordering
         customer_info << $stdin.gets.chomp
         puts "What is the customer's phone number?"
         customer_info << Verification.validatePhoneNumber # verifies phone number is possible
-        puts "A $3 delivery charge will be added to the customer's order."
-        customer_info << 3.0 # change this if surcharge is changed
+        puts "A #{Formatting.floatToCurrency(surcharge)} delivery charge will be added to the customer's order."
+        customer_info << surcharge # change this if surcharge is changed
         valid = true
       elsif input == "cancel"
         puts "Order cancelled."
