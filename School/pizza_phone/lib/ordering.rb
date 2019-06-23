@@ -21,13 +21,14 @@ module Ordering
   def pickOrder(list, count)
     ordered_items = Array.new
     item_table = Array.new
+    item_names = Array.new # to show already ordered items
     total_price = 0
 
     count.times do |i| # for every pizza wanted repeat this section
-      if ordered_items.length > 0 # print statement if items have already been ordered
-        puts "The current pizza(s) you have ordered are #{ordered_items}. You have #{count - ordered_items.length} pizza(s) left to order."
-      end
       selection_complete = false
+      if item_table.length > 0 # print statement if items have already been ordered
+        puts "The current pizza(s) you have ordered are #{item_names.join(', ')}. You have #{count - item_table.length} pizza(s) left to order."
+      end
       until selection_complete == true
         puts "Select a pizza:"
         print ">"
@@ -56,6 +57,7 @@ module Ordering
         end
       end
       total_price = total_price + requested_item[1]
+      item_names << requested_item[0]
       item_table << requested_item
     end
     return item_table, total_price
