@@ -22,7 +22,7 @@ module Verification
     selection_complete = false
     until selection_complete == true
       print ">"
-      selection = $stdin.gets.to_i
+      selection = $stdin.gets.strip.to_i
       if selection < 0
         puts "Invalid number."
       elsif selection > max # max amount of pizzas ordered

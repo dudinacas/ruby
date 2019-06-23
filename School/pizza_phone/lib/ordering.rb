@@ -32,7 +32,7 @@ module Ordering
       until selection_complete == true
         puts "Select a pizza:"
         print ">"
-        selection = $stdin.gets.to_i
+        selection = $stdin.gets.strip.to_i
         if selection == (list.length + 1) # number after last pizza, eg. cancel order
           puts "Order cancelled."
           return false
@@ -44,7 +44,7 @@ module Ordering
           puts "You have selected #{requested_item[0]} at a price of #{Formatting.floatToCurrency(requested_item[1])}."
           puts "Are you sure you want to order this pizza? [y/n]"
           print ">"
-          selection = $stdin.gets.chomp.downcase
+          selection = $stdin.gets.chomp.downcase.strip
           if selection == "y"
             selection_complete = true
           elsif selection == "n"
@@ -70,19 +70,19 @@ module Ordering
     puts "Is it pickup or delivery? [pickup / delivery / cancel]"
     until valid == true
       print ">"
-      input = $stdin.gets.chomp.downcase
+      input = $stdin.gets.chomp.downcase.strip
       if input == "pickup"
         puts "What is the customer's name?"
         print ">"
-        customer_info << $stdin.gets.chomp # appends customer name to customer_info array
+        customer_info << $stdin.gets.chomp.strip # removes leading and trailing whitespace, appends customer name to customer_info array
         valid = true
       elsif input == "delivery"
         puts "What is the customer's name?"
         print ">"
-        customer_info << $stdin.gets.chomp
+        customer_info << $stdin.gets.chomp.strip
         puts "What is the customer's address?"
         print ">"
-        customer_info << $stdin.gets.chomp
+        customer_info << $stdin.gets.chomp.strip
         puts "What is the customer's phone number?"
         customer_info << Verification.validatePhoneNumber # verifies phone number is possible
         puts "A #{Formatting.floatToCurrency(surcharge)} delivery charge will be added to the customer's order."
