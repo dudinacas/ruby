@@ -11,7 +11,7 @@ include Formatting
 
 # to add another pizza, use this format: ["name of pizza", price of pizza]
 pizza_list = [
-  ["Meatlovers", 8.5], ["Hawaiian", 8.5], ["Cheese", 8.5], ["Cheesy Garlic", 8.5], ["Pepperoni", 8.5], ["Supreme", 8.5], ["Vegetarian", 8.5], ["Italian Sausage", 8.5], ["Butter Chicken", 13.5], ["Garlic Prawn", 13.5], ["Sweet & Sour Pork", 13.5], ["Seaweed & Anchovy", 13.5], ["Jalapeno Chicken", 13.5], ["Grape 'n Gravy", 13.5], ["Artesian Water", 13.5], ["Flaming-Hot Pipes Special", 15]
+  ["Meatlovers", 8.5], ["Hawaiian", 8.5], ["Cheese", 8.5], ["Cheesy Garlic", 8.5], ["Pepperoni", 8.5], ["Supreme", 8.5], ["Vegetarian", 8.5], ["Italian Sausage", 8.5], ["Butter Chicken", 13.5], ["Garlic Prawn", 13.5], ["Sweet & Sour Pork", 13.5], ["Seaweed & Anchovy", 13.5], ["Jalapeno Chicken", 13.5], ["Grape 'n Gravy", 13.5], ["Artesian Water", 13.5], ["Flaming-Hot Pipes Special", 15.0]
 ]
 delivery_charge = 3.0
 
