@@ -15,12 +15,12 @@ pizza_list = [
 ]
 delivery_charge = 3.0
 
-puts "Welcome to Bruce's Piping-Hot Pizza!\n\n" # \n = newline
-valid = true
+puts "Welcome to Bruce's Piping-Hot Pizza!\n\n" # puts = prints text, \n = newline
+running = true
 
 while true # loop to restart program if order is cancelled
 
-  while valid == true # infinite loop of pizza ordering program, quit by break command
+  while running == true # infinite loop of pizza ordering program, quit by break command
 
     puts "How many pizzas are being ordered [1-5]?"
     count = Verification.validateItemCount(5) # makes sure given is below 6
@@ -61,7 +61,7 @@ while true # loop to restart program if order is cancelled
 
   end
 
-  valid = false
+  running = false
 
   puts "\nInput another order? [y/n]"
   print ">"
@@ -73,8 +73,8 @@ while true # loop to restart program if order is cancelled
     puts "Quitting program..."
     exit
   else
-    puts "Creating another order...\n\n" # as this is in a loop, goes back to input another order if valid is set true
-    valid = true
+    puts "Creating another order...\n\n" # as this is in a loop, goes back to input another order if running is set true
+    running = true
   end
 
 end
