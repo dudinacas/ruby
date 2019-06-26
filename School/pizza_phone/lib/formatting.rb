@@ -14,4 +14,13 @@ module Formatting
     x = "$" + x # adds currency symbol and returns x
   end
 
+  def capitaliseName(name)
+    capitalArray = Array.new # new array to hold capitalised words
+    nameArray = name.split # splits name into separate items in array
+    nameArray.each do |i|
+      capitalArray << i.capitalize # capitalises each item in nameArray, appending the new items onto capitalised array
+    end
+    name = capitalArray.join(' ') # joins array into string, each item separated by spaces
+  end
+
 end

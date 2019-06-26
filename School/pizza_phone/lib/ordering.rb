@@ -79,7 +79,7 @@ module Ordering
       elsif input == "delivery"
         puts "What is the customer's name?"
         print ">"
-        customer_info << $stdin.gets.chomp.strip.capitalize # changes eg. 'bruce Von pipes' to 'Bruce Von Pipes'
+        customer_info << Formatting.capitaliseName($stdin.gets.chomp.strip) # capitalises name
         puts "What is the customer's address?"
         print ">"
         customer_info << $stdin.gets.chomp.strip
