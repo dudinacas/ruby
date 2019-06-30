@@ -9,20 +9,20 @@ include Ordering
 include Verification
 include Formatting
 
-# to add another pizza, use this format: ["name of pizza", price of pizza]
+# to add another pizza, use this format: ['name of pizza', price of pizza]
 pizza_list = [
-  ["Meatlovers", 8.5], ["Hawaiian", 8.5], ["Cheese", 8.5], ["Cheesy Garlic", 8.5], ["Pepperoni", 8.5], ["Supreme", 8.5], ["Vegetarian", 8.5], ["Italian Sausage", 8.5], ["Butter Chicken", 13.5], ["Garlic Prawn", 13.5], ["Sweet & Sour Pork", 13.5], ["Seaweed & Anchovy", 13.5], ["Jalapeno Chicken", 13.5], ["Grape 'n Gravy", 13.5], ["Artesian Water", 13.5], ["Flaming-Hot Pipes Special", 15.0]
+  ['Meatlovers', 8.5], ['Hawaiian', 8.5], ['Cheese', 8.5], ['Cheesy Garlic', 8.5], ['Pepperoni', 8.5], ['Supreme', 8.5], ['Vegetarian', 8.5], ['Italian Sausage', 8.5], ['Plain', 8.5] ['Butter Chicken', 13.5], ['Garlic Prawn', 13.5], ['Sweet & Sour Pork', 13.5], ['Seaweed & Anchovy', 13.5], ['Jalapeno Chicken', 13.5], ['Grape \'n Gravy', 13.5], ['Artesian Water', 13.5], ['Flaming-Hot Pipes Special', 15.0]
 ]
 delivery_charge = 3.0
 
-puts "Welcome to Bruce's Piping-Hot Pizza!\n\n" # puts = prints text, \n = newline
+puts 'Welcome to Bruce\'s Piping-Hot Pizza!\n\n' # puts = prints text, \n = newline
 running = true
 
-while true # loop to restart program if order is cancelled
+loop do # loop to restart program if order is cancelled
 
   while running == true # infinite loop of pizza ordering program, quit by break command
 
-    puts "How many pizzas are being ordered [1-5]?"
+    puts 'How many pizzas are being ordered [1-5]?'
     count = Verification.validateItemCount(5) # makes sure given is below 6
     pizza_count = count[0]
 
@@ -38,11 +38,11 @@ while true # loop to restart program if order is cancelled
       break
     end
 
-    print "\nThe pizzas being ordered are "
+    print '\nThe pizzas being ordered are '
     pizza_chosen[0].each do |i|
       print "#{i[0]}, " # in the pizza_chosen[0] array, i[1] is the price of the item while i[0] is the name
     end
-    puts "and this will cost #{Formatting.floatToCurrency(pizza_chosen[1])} in total.\n\n"
+    puts 'and this will cost #{Formatting.floatToCurrency(pizza_chosen[1])} in total.\n\n'
 
     customer_info = Ordering.orderTransport(delivery_charge) # gets info on delivery type
     if customer_info == false # cancels order if cancel option is selected
@@ -63,17 +63,17 @@ while true # loop to restart program if order is cancelled
 
   running = false
 
-  puts "\nInput another order? [y/n]"
+  puts '\nInput another order? [y/n]'
   print ">"
   input = $stdin.gets.chomp.downcase.strip # so that Y and N work
 
   if input != "y" and input != "n"
-    puts "Invalid syntax."
+    puts 'Invalid syntax.'
   elsif input == "n"
-    puts "Quitting program..."
+    puts 'Quitting program...'
     exit
   else
-    puts "Creating another order...\n\n" # as this is in a loop, goes back to input another order if running is set true
+    puts 'Creating another order...\n\n' # as this is in a loop, goes back to input another order if running is set true
     running = true
   end
 

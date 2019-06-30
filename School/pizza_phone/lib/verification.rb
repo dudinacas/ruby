@@ -7,12 +7,12 @@ module Verification
   def validatePhoneNumber
     valid = false
     until valid == true
-      print ">"
+      print '>'
       input = $stdin.gets.to_s.delete('^0-9') # checks if phone number valid, converts to string, deletes any non-numeric characters
       if input.length >= 7 and input.length <= 10 # because phone numbers are between 7 and 10 characters
         valid = true
       else
-        puts "Invalid number."
+        puts 'Invalid number.'
       end
     end
     return input
@@ -21,21 +21,21 @@ module Verification
   def validateItemCount(max)
     valid = false
     until valid == true
-      print ">"
+      print '>'
       selection = $stdin.gets.strip.to_i # removes whitespace and converts to integer
       if selection < 0
-        puts "Invalid number."
+        puts 'Invalid number.'
       elsif selection > max # max amount of pizzas ordered
-        puts "Too many pizzas."
+        puts 'Too many pizzas.'
       elsif selection >= 1
         count = selection
-        puts "#{count} pizzas selected."
+        puts '#{count} pizzas selected.'
         valid = true
       elsif selection == 0 # next block of code will cancel
-        puts "Invalid number or order cancelled."
+        puts 'Invalid number or order cancelled.'
         break
       else
-        puts "Invalid number."
+        puts 'Invalid number.'
       end
     end
     return count, selection

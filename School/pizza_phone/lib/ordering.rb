@@ -10,12 +10,12 @@ module Ordering
   include Formatting
 
   def buildOrderList(list)
-    puts "" # newline
+    puts '' # newline
     list.each_index do |i| # for the index (position) of each item in list
-      puts "#{i+1}: #{list[i][0]} - #{Formatting.floatToCurrency(list[i][1])}" # item 0/1 in item [i] of list
+      puts '#{i+1}: #{list[i][0]} - #{Formatting.floatToCurrency(list[i][1])}' # item 0/1 in item [i] of list
       @number = i+1
     end
-    puts "#{@number+1}: Cancel ordering"
+    puts '#{@number+1}: Cancel ordering'
   end
 
   def pickOrder(list, count)
@@ -27,33 +27,33 @@ module Ordering
     count.times do |i| # for every pizza wanted repeat this section
       selection_complete = false
       if item_table.length > 0 # print statement if items have already been ordered
-        puts "The current pizza(s) you have ordered are #{item_names.join(', ')}. You have #{count - item_table.length} pizza(s) left to order."
+        puts 'The current pizza(s) you have ordered are #{item_names.join(', ')}. You have #{count - item_table.length} pizza(s) left to order.'
       end
       until selection_complete == true
-        puts "Select a pizza:"
-        print ">"
+        puts 'Select a pizza:'
+        print '>'
         selection = $stdin.gets.strip.to_i
         if selection == (list.length + 1) # number after last pizza, eg. cancel order
-          puts "Order cancelled."
+          puts 'Order cancelled.'
           return false
           break
         elsif list.fetch(selection - 1, "fail") == "fail" # if number is negative or invalid
-          puts "Invalid number."
+          puts 'Invalid number.'
         elsif selection > 0 # if this is not checked, program will take the last item in array upon no number entered
           requested_item = list[selection-1]
-          puts "You have selected #{requested_item[0]} at a price of #{Formatting.floatToCurrency(requested_item[1])}."
-          puts "Are you sure you want to order this pizza? [y/n]"
-          print ">"
+          puts 'You have selected #{requested_item[0]} at a price of #{Formatting.floatToCurrency(requested_item[1])}.'
+          puts 'Are you sure you want to order this pizza? [y/n]'
+          print '>'
           selection = $stdin.gets.chomp.downcase.strip
           if selection == "y"
             selection_complete = true
           elsif selection == "n"
-            puts "Pizza not ordered."
+            puts 'Pizza not ordered.'
           else
-            puts "Invalid response. Pizza not ordered." # so they are absolutely certain they want x pizza
+            puts 'Invalid response. Pizza not ordered.' # so they are absolutely certain they want x pizza
           end
         else
-          puts "Invalid number."
+          puts 'Invalid number.'
         end
       end
       total_price = total_price + requested_item[1]
@@ -67,33 +67,33 @@ module Ordering
     customer_info = Array.new
     valid = false
     valid_num = false
-    puts "Is it pickup or delivery? [pickup / delivery / cancel]"
+    puts 'Is it pickup or delivery? [pickup / delivery / cancel]'
     until valid == true
       print ">"
       input = $stdin.gets.chomp.downcase.strip
       if input == "pickup"
-        puts "What is the customer's name?"
-        print ">"
+        puts 'What is the customer\'s name?'
+        print '>'
         customer_info << $stdin.gets.chomp.strip # removes leading and trailing whitespace, appends customer name to customer_info array
         valid = true
       elsif input == "delivery"
-        puts "What is the customer's name?"
-        print ">"
+        puts 'What is the customer\'s name?'
+        print '>'
         customer_info << Formatting.capitaliseName($stdin.gets.chomp.strip) # capitalises name
-        puts "What is the customer's address?"
-        print ">"
+        puts 'What is the customer\'s address?'
+        print '>'
         customer_info << $stdin.gets.chomp.strip
-        puts "What is the customer's phone number?"
+        puts 'What is the customer\'s phone number?'
         customer_info << Verification.validatePhoneNumber # verifies phone number is possible
-        puts "A #{Formatting.floatToCurrency(surcharge)} delivery charge will be added to the customer's order."
+        puts 'A #{Formatting.floatToCurrency(surcharge)} delivery charge will be added to the customer\'s order.'
         customer_info << surcharge # change this if surcharge is changed
         valid = true
       elsif input == "cancel"
-        puts "Order cancelled."
+        puts 'Order cancelled.'
         return false # reports false instead of array
         break
       else
-        puts "Invalid input."
+        puts 'Invalid input.'
       end
     end
     return input, customer_info
