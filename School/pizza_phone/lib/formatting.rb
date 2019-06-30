@@ -9,9 +9,9 @@ module Formatting
     x_dp = x.to_s.split('.').last.size # converts to string, converts to array before dp and after, takes the decimal point value
     x = x.to_s # now converts to string
     if x_dp <= 2
-      x = x + "0" * (2 - x_dp) # appends 0 onto end 2 - dp times
+      x = x + '0' * (2 - x_dp) # appends 0 onto end 2 - dp times
     end
-    x = "$" + x # adds currency symbol and returns x
+    x = '$' + x # adds currency symbol and returns x
   end
 
   def capitaliseName(name)

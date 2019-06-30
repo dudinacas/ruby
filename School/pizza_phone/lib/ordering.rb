@@ -12,10 +12,10 @@ module Ordering
   def buildOrderList(list)
     puts '' # newline
     list.each_index do |i| # for the index (position) of each item in list
-      puts '#{i+1}: #{list[i][0]} - #{Formatting.floatToCurrency(list[i][1])}' # item 0/1 in item [i] of list
+      puts "#{i+1}: #{list[i][0]} - #{Formatting.floatToCurrency(list[i][1])}" # item 0/1 in item [i] of list
       @number = i+1
     end
-    puts '#{@number+1}: Cancel ordering'
+    puts "#{@number+1}: Cancel ordering"
   end
 
   def pickOrder(list, count)
@@ -27,7 +27,7 @@ module Ordering
     count.times do |i| # for every pizza wanted repeat this section
       selection_complete = false
       if item_table.length > 0 # print statement if items have already been ordered
-        puts 'The current pizza(s) you have ordered are #{item_names.join(', ')}. You have #{count - item_table.length} pizza(s) left to order.'
+        puts "The current pizza(s) you have ordered are #{item_names.join(', ')}. You have #{count - item_table.length} pizza(s) left to order."
       end
       until selection_complete == true
         puts 'Select a pizza:'
@@ -41,7 +41,7 @@ module Ordering
           puts 'Invalid number.'
         elsif selection > 0 # if this is not checked, program will take the last item in array upon no number entered
           requested_item = list[selection-1]
-          puts 'You have selected #{requested_item[0]} at a price of #{Formatting.floatToCurrency(requested_item[1])}.'
+          puts "You have selected #{requested_item[0]} at a price of #{Formatting.floatToCurrency(requested_item[1])}."
           puts 'Are you sure you want to order this pizza? [y/n]'
           print '>'
           selection = $stdin.gets.chomp.downcase.strip
@@ -71,12 +71,12 @@ module Ordering
     until valid == true
       print ">"
       input = $stdin.gets.chomp.downcase.strip
-      if input == "pickup"
+      if input == 'pickup'
         puts 'What is the customer\'s name?'
         print '>'
         customer_info << $stdin.gets.chomp.strip # removes leading and trailing whitespace, appends customer name to customer_info array
         valid = true
-      elsif input == "delivery"
+      elsif input == 'delivery'
         puts 'What is the customer\'s name?'
         print '>'
         customer_info << Formatting.capitaliseName($stdin.gets.chomp.strip) # capitalises name
@@ -85,10 +85,10 @@ module Ordering
         customer_info << $stdin.gets.chomp.strip
         puts 'What is the customer\'s phone number?'
         customer_info << Verification.validatePhoneNumber # verifies phone number is possible
-        puts 'A #{Formatting.floatToCurrency(surcharge)} delivery charge will be added to the customer\'s order.'
+        puts "A #{Formatting.floatToCurrency(surcharge)} delivery charge will be added to the customer\'s order."
         customer_info << surcharge # change this if surcharge is changed
         valid = true
-      elsif input == "cancel"
+      elsif input == 'cancel'
         puts 'Order cancelled.'
         return false # reports false instead of array
         break
@@ -114,7 +114,7 @@ module Ordering
       puts "Customer Name: #{customer_info[1][0]}"
     end
 
-    puts "Items ordered:"
+    puts 'Items ordered:'
     order[0].each_index do |i| # pizza_chosen[2] is the table of items ordered
       puts "#{order[0][i][0]} - #{Formatting.floatToCurrency(order[0][i][1])}"
     end

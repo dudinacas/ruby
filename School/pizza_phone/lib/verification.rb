@@ -29,7 +29,7 @@ module Verification
         puts 'Too many pizzas.'
       elsif selection >= 1
         count = selection
-        puts '#{count} pizzas selected.'
+        puts "#{count} pizzas selected."
         valid = true
       elsif selection == 0 # next block of code will cancel
         puts 'Invalid number or order cancelled.'
