@@ -83,7 +83,7 @@ module Ordering
         puts 'What is the customer\'s address?'
         print '>'
         customer_info << $stdin.gets.chomp.strip
-        puts 'What is the customer\'s phone number?'
+        puts 'What is the customer\'s phone number? [7-10 digits]'
         customer_info << Verification.validatePhoneNumber # verifies phone number is possible
         puts "A #{Formatting.floatToCurrency(surcharge)} delivery charge will be added to the customer\'s order."
         customer_info << surcharge # change this if surcharge is changed
