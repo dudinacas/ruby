@@ -20,24 +20,24 @@ PHRASES = {
     "From *** get the *** attribute and set it to '***'."
   }
 
-PHRASE_FIRST = ARGV[0] == "english"
+PHRASE_FIRST = ARGV[0] == "english" # if first terminal argument is english, set PHRASE_FIRST to english
 
 open(WORD_URL) {|f|
-  f.each_line {|word| WORDS.push(word.chomp)}
+  f.each_line {|word| WORDS.push(word.chomp)} # for each line of the txt file, put each word into the WORDS array
   }
 
 def craft_names(rand_words, snippet, pattern, caps=false)
-  names = snippet.scan(pattern).map do
+  names = snippet.scan(pattern).map do # scan looks for a certain pattern and makes into array, map returns new array called 'names'
     word = rand_words.pop()
-    caps ? word.capitalize : word
+    caps ? word.capitalize : word # if caps = true word is capitalised
   end
 
-  return names * 2
+  return names * 2 # duplicates every name?
 end
 
-def craft_params(rand_words, snippet, pattern)
+def craft_params(rand_words, snippet, pattern) # creates parameters for code
   names = (0...snippet.scan(pattern).length).map do
-    param_count = rand(3) +  1
+    param_count = rand(3) +  1 # number of params from 0 to 2, adds 1
     params = (0...param_count).map {|x| rand_words.pop() }
     params.join(', ')
   end
