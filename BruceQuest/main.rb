@@ -41,14 +41,15 @@ class Death < Scene
 
   def enter()
     puts @@quips[rand(0..(@@quips.length - 1))]
-    puts "GAME OVER"
+    puts 'GAME OVER'
     exit(1)
   end
 end
 
 class Finished < Scene
   def enter()
-    puts "You won! Congratulations."
+    puts 'You won! Congratulations.'
+    puts 'A hollow victory, but you\'ll take what you can get.'
   end
 end
 
@@ -66,8 +67,30 @@ class QuartzHallway < Scene
     puts '"Halt!", the man says.'
     puts '"What are you doing here?"'
     puts "\n"
-    print '>'
-    return 'death'
+    print '> '
+
+    action = $stdin.gets.chomp
+
+    if action.include?('Bruce')
+      puts 'The man looks at you, a grimace on his face.'
+      puts "\n"
+      puts '"Bruce, you say?", shaking his head while tapping a keypad in his hand.'
+      puts '"We cleansed the world from Bruces a long time ago. You must be an...'
+      puts '...aberration. Say goodbye."'
+      puts "\n"
+      puts 'Several men in black jumpsuits and masks come to escort you'
+      puts 'away from the premises, and you realise you aren\'t going'
+      puts 'to live much longer.'
+      puts "\n"
+      return 'death'
+    end
+
+    if action.include?('punch')
+      puts 'You try to step the man out. He dies. I can\'t be arsed to'
+      puts 'write anything else.\n'
+      return 'finished'
+    end
+
   end
 end
 
