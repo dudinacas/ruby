@@ -123,7 +123,7 @@ module Moves
       end
       # $enemy_current_damage = $enemy_damage / 2
       # make ongoing for 2 turns
-      # separate enemy damage and player damage buffs/debuffs?
+      # I GOT IT, NEW MODULE + FUNCTION IN MAIN TO CHECK FOR DEBUFFS <---
     when 3
       # $enemy_current_damage = $enemy_damage / 4
       # make ongoing for 3 turns
